@@ -1,1 +1,272 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazwa strony</title>
+    
+    <!-- Gotycka czcionka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 15px 20px;
+            border: 2px solid #333;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: 'UnifrakturMaguntia', cursive, serif;
+            font-size: 38px;
+            font-weight: normal;
+        }
+
+        .header-datetime {
+            border: 1px solid #333;
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        nav {
+            background-color: #ffffff;
+            border: 2px solid #333;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav li {
+            display: flex;
+            align-items: center;
+            border: 1px solid #333;
+            background-color: #fafafa;
+            padding: 3px;
+        }
+
+        nav li input[type="text"] {
+            border: none;
+            background: transparent;
+            padding: 5px 8px;
+            font-weight: bold;
+            outline: none;
+            width: 100px;
+        }
+
+        .action-btn {
+            background: #e0e0e0;
+            border: 1px solid #333;
+            padding: 2px 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 2px;
+        }
+
+        .action-btn:hover {
+            background-color: #ccc;
+        }
+
+        .close-btn {
+            background: #fff;
+            border: 1px solid #333;
+            padding: 2px 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .close-btn:hover {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .sidebar-left, .sidebar-right {
+            width: 200px;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            padding: 10px;
+        }
+
+        .sidebar-left h3, .sidebar-right h4 {
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .sidebar-left ul, .sidebar-right ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        /* Interaktywne pozycje na liście */
+        .clickable-item {
+            padding: 6px;
+            border-bottom: 1px dashed #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .clickable-item:hover {
+            background-color: #e8f4ff;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            flex: 1;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 10px;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar-left, .sidebar-right {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nazwa strony</h1>
+        <div class="header-datetime" id="datetime">
+            Ładowanie daty...
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <input type="text" value="Pod strony" aria-label="Pod strony">
+                <button class="close-btn" onclick="closeTab(this)">X</button>
+            </li>
+            <li>
+                <input type="text" value="PDF" aria-label="PDF">
+                <button class="action-btn" onclick="window.open('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank')">Otwórz</button>
+                <button class="close-btn" onclick="closeTab(this)">X</button>
+            </li>
+            <li>
+                <input type="text" value="Kontakt" aria-label="Kontakt">
+                <button class="close-btn" onclick="closeTab(this)">X</button>
+            </li>
+            <li>
+                <input type="text" value="E-mail" aria-label="E-mail">
+                <button class="action-btn" onclick="window.location.href='mailto:kontakt@twojadomena.pl'">Wyślij</button>
+                <button class="close-btn" onclick="closeTab(this)">X</button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Lewy panel z automatycznie otwierającymi się pozycjami -->
+        <aside class="sidebar-left">
+            <h3>Filmy</h3>
+            <p class="clickable-item" onclick="window.open('https://www.youtube.com', '_blank')">YouTube</p>
+            <br>
+            
+            <!-- Kliknięcie tytułu otworzy wybrany link -->
+            <h3 class="clickable-item" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">Tytuł 1</h3>
+            <ul>
+                <li class="clickable-item" onclick="window.open('https://www.youtube.com/results?search_query=film+2', '_blank')">Film 2</li>
+                <li class="clickable-item" onclick="window.open('https://www.youtube.com/results?search_query=film+3', '_blank')">Film 3</li>
+                <li class="clickable-item" onclick="window.open('https://www.youtube.com/results?search_query=film+4', '_blank')">Film 4</li>
+                <li class="clickable-item" onclick="window.open('https://www.youtube.com/results?search_query=film+5', '_blank')">Film 5</li>
+            </ul>
+        </aside>
+
+        <main>
+            <h2>Główna strona</h2>
+            <p>Kliknij dowolny tytuł lub pozycję z numerem, aby otworzyć przypisaną stronę www w nowej karcie.</p>
+        </main>
+
+        <!-- Prawy panel z automatycznie otwierającymi się pozycjami kalendarza -->
+        <aside class="sidebar-right">
+            <div class="section">
+                <h4>WWW</h4>
+                <p class="clickable-item" onclick="window.open('https://www.google.com', '_blank')">Google</p>
+            </div>
+            
+            <div class="section">
+                <h4>Kalendarz</h4>
+                <ul>
+                    <li class="clickable-item" onclick="window.open('https://calendar.google.com', '_blank')">Wydarzenie 1</li>
+                    <li class="clickable-item" onclick="window.open('https://calendar.google.com', '_blank')">Wydarzenie 2</li>
+                    <li class="clickable-item" onclick="window.open('https://calendar.google.com', '_blank')">Wydarzenie 3</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        &copy; 2026 Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script>
+        function closeTab(button) {
+            button.parentElement.remove();
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('pl-PL');
+            const timeStr = now.toLocaleTimeString('pl-PL');
+            document.getElementById('datetime').textContent = `${dateStr} | ${timeStr}`;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    </script>
+</body>
+</html>
